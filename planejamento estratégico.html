@@ -1,0 +1,481 @@
+ 
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planejamento Estratégico 2035 | Fiuza Advogados</title>
+    <!-- Chosen Palette: Calm Neutrals & Professional Blue -->
+    <!-- Application Structure Plan: A single-page dashboard designed for strategic visualization. The structure follows the report's logic: 1. A prominent header with the 10-year Vision. 2. A section for foundational principles (Manifesto, Mission, Values). 3. An interactive action plan with toggleable objectives for B2B and B2C pillars. 4. A visual timeline for the 10-year leadership development plan. 5. An interactive financial dashboard with dynamic charts to visualize goals. 6. A clear section for investment priorities. This structure allows for a top-down exploration, from the high-level vision to the detailed operational and financial goals, facilitating both quick overviews and deep dives. -->
+    <!-- Visualization & Content Choices: 1. Vision: Large, impactful text to serve as a constant reminder. 2. Foundations: Card-based layout for clarity and easy reading. 3. Action Plan: Toggleable cards (HTML/JS) to prevent information overload, allowing focus on specific objectives. KPIs are listed for clarity. 4. Leadership Plan: A CSS-based vertical timeline to clearly show the parallel progression of both partners over 10 years. 5. Financials: Interactive charts (Chart.js) are used to make data digestible and engaging. A bar chart for revenue, a dynamic donut chart for the business mix, and a line chart for profitability allow for quick trend analysis. Interaction is provided via buttons to switch between years. This is more effective than a static table. 6. Investments: Styled cards to highlight key priorities. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-xl font-bold text-slate-800">Fiuza Advogados | Visão 2035</a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#plano-acao" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Plano de Ação</a>
+                    <a href="#lideranca" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Liderança</a>
+                    <a href="#metas-financeiras" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Metas</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Section 1: Visão 2035 -->
+        <section id="visao" class="text-center py-16">
+            <h1 class="text-2xl font-semibold text-blue-600 tracking-wide uppercase">Visão de Longo Prazo (10 Anos)</h1>
+            <p class="mt-4 text-4xl md:text-5xl font-extrabold text-slate-900 max-w-4xl mx-auto">
+                Tornar-se o escritório de advocacia híbrido líder no Brasil, defendendo a nova economia e os direitos do cidadão com tecnologia de ponta.
+            </p>
+        </section>
+
+        <!-- Section 2: Fundamentos Estratégicos -->
+        <section id="fundamentos" class="py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-800">Manifesto</h3>
+                    <p class="mt-2 text-sm text-slate-600">Antecipar e direcionar as transformações através da atuação proativa, preventiva e da mediação de conflitos.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-800">Missão</h3>
+                    <p class="mt-2 text-sm text-slate-600">Resolver os desafios jurídicos dos nossos clientes, permitindo que eles foquem no que fazem de melhor.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-800">Valores</h3>
+                    <p class="mt-2 text-sm text-slate-600">Agilidade, Segurança, Flexibilidade, Inovação e Proatividade.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Plano de Ação Ágil (2-3 Anos) -->
+        <section id="plano-acao" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">Plano de Ação Ágil (2-3 Anos)</h2>
+                <p class="mt-2 text-slate-600">Roteiro prático com objetivos, indicadores e cronograma.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Pilar B2B -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-center text-blue-700">Pilar 1: Vanguarda em Negócios (B2B)</h3>
+                    <div class="objective-card bg-white rounded-lg shadow-sm">
+                        <button class="w-full text-left p-4 font-semibold text-slate-800 flex justify-between items-center">
+                            <span>1.1: Liderança em Direito Digital e Privacidade</span>
+                            <span class="arrow-icon transition-transform">▼</span>
+                        </button>
+                        <div class="details p-4 border-t border-slate-200 hidden">
+                            <h4 class="font-semibold">Iniciativas:</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 mt-2 space-y-1">
+                                <li>Desenvolver "produtos jurídicos" em pacotes.</li>
+                                <li>Realizar workshops trimestrais para hubs de inovação.</li>
+                                <li>Publicar mensalmente artigos e estudos de caso.</li>
+                            </ul>
+                            <h4 class="font-semibold mt-4">KPIs:</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 mt-2 space-y-1">
+                                <li>Nº de pacotes vendidos.</li>
+                                <li>Nº de leads por workshop.</li>
+                                <li>Taxa de conversão de conteúdo.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="objective-card bg-white rounded-lg shadow-sm">
+                        <button class="w-full text-left p-4 font-semibold text-slate-800 flex justify-between items-center">
+                            <span>1.2: Principal Suporte Jurídico para Startups</span>
+                            <span class="arrow-icon transition-transform">▼</span>
+                        </button>
+                        <div class="details p-4 border-t border-slate-200 hidden">
+                             <h4 class="font-semibold">Iniciativas:</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 mt-2 space-y-1">
+                                <li>Estruturar e promover o "Plano de Assessoria para Startups".</li>
+                                <li>Fortalecer networking em eventos de tecnologia.</li>
+                                <li>Criar o selo "Fiuza Advogados - Startup Segura".</li>
+                            </ul>
+                            <h4 class="font-semibold mt-4">KPIs:</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 mt-2 space-y-1">
+                                <li>Nº de startups assinantes.</li>
+                                <li>Receita Recorrente Mensal (MRR).</li>
+                                <li>Nº de clientes estratégicos de eventos.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pilar B2C -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-center text-blue-700">Pilar 2: Defesa Digital do Cidadão (B2C)</h3>
+                    <div class="objective-card bg-white rounded-lg shadow-sm">
+                        <button class="w-full text-left p-4 font-semibold text-slate-800 flex justify-between items-center">
+                           <span>2.1: Dominar o Direito do Consumidor Bancário</span>
+                            <span class="arrow-icon transition-transform">▼</span>
+                        </button>
+                        <div class="details p-4 border-t border-slate-200 hidden">
+                            <h4 class="font-semibold">Iniciativas:</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 mt-2 space-y-1">
+                                <li>Escalar campanha de marketing para ações revisionais.</li>
+                                <li>Implementar automação para análise inicial de casos.</li>
+                                <li>Produzir conteúdo em vídeo educativo.</li>
+                            </ul>
+                            <h4 class="font-semibold mt-4">KPIs:</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 mt-2 space-y-1">
+                                <li>Custo de Aquisição de Cliente (CAC).</li>
+                                <li>Nº de novos casos por mês.</li>
+                                <li>Tempo médio da análise inicial.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="objective-card bg-white rounded-lg shadow-sm">
+                        <button class="w-full text-left p-4 font-semibold text-slate-800 flex justify-between items-center">
+                            <span>2.2: Referência em Direito da Saúde</span>
+                            <span class="arrow-icon transition-transform">▼</span>
+                        </button>
+                        <div class="details p-4 border-t border-slate-200 hidden">
+                            <h4 class="font-semibold">Iniciativas:</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 mt-2 space-y-1">
+                                <li>Campanha focada em negativas de cobertura e reajustes.</li>
+                                <li>Criar ferramenta de análise preliminar online.</li>
+                                <li>Produzir e-book sobre "Direitos do Paciente".</li>
+                            </ul>
+                            <h4 class="font-semibold mt-4">KPIs:</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 mt-2 space-y-1">
+                                <li>Nº de leads pela ferramenta de análise.</li>
+                                <li>Nº de downloads do e-book.</li>
+                                <li>Nº de novos casos por mês.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="objective-card bg-white rounded-lg shadow-sm">
+                        <button class="w-full text-left p-4 font-semibold text-slate-800 flex justify-between items-center">
+                           <span>2.3: Melhor Experiência do Cliente em Escala</span>
+                            <span class="arrow-icon transition-transform">▼</span>
+                        </button>
+                        <div class="details p-4 border-t border-slate-200 hidden">
+                             <h4 class="font-semibold">Iniciativas:</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 mt-2 space-y-1">
+                                <li>Adotar plataforma de CRM.</li>
+                                <li>Evoluir o "Aplicativo do Escritório".</li>
+                                <li>Estabelecer e monitorar SLAs.</li>
+                            </ul>
+                            <h4 class="font-semibold mt-4">KPIs:</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-600 mt-2 space-y-1">
+                                <li>Net Promoter Score (NPS).</li>
+                                <li>Tempo médio de primeira resposta.</li>
+                                <li>Taxa de cumprimento dos SLAs.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Liderança -->
+        <section id="lideranca" class="py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">Desenvolvimento de Liderança (10 Anos)</h2>
+                <p class="mt-2 text-slate-600">A jornada paralela de desenvolvimento para escalar a liderança do escritório.</p>
+            </div>
+
+            <div class="relative max-w-5xl mx-auto">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 w-0.5 h-full bg-slate-300 -translate-x-1/2"></div>
+
+                <!-- Fase 1 -->
+                <div class="relative mb-12">
+                    <div class="flex items-center mb-1">
+                        <div class="w-1/2 pr-8 text-right">
+                           <h3 class="text-xl font-bold text-blue-700">Fase 1: Fundação</h3>
+                           <p class="text-sm text-slate-500">Anos 1-3</p>
+                        </div>
+                        <div class="w-10 h-10 bg-blue-600 rounded-full z-10 flex items-center justify-center text-white font-bold">1</div>
+                        <div class="w-1/2"></div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-1/2 p-4 bg-white rounded-lg shadow-md border-r-2 border-blue-200">
+                            <h4 class="font-bold text-slate-800">Sócio Fundador</h4>
+                            <p class="text-sm text-slate-600 mt-1">Foco: Aprender a Delegar e Estruturar. Supervisionar criando manuais, liderar vendas e fazer mentoria.</p>
+                        </div>
+                        <div class="w-1/2 p-4 bg-white rounded-lg shadow-md ml-8 border-l-2 border-slate-300">
+                             <h4 class="font-bold text-slate-800">Sócio de Operações</h4>
+                            <p class="text-sm text-slate-600 mt-1">Foco: Dominar a Execução. Assumir o dia-a-dia, aprender a delegar tarefas simples e mapear processos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fase 2 -->
+                 <div class="relative mb-12">
+                    <div class="flex items-center mb-1">
+                        <div class="w-1/2 pr-8 text-right">
+                           <h3 class="text-xl font-bold text-blue-700">Fase 2: Crescimento</h3>
+                           <p class="text-sm text-slate-500">Anos 4-7</p>
+                        </div>
+                        <div class="w-10 h-10 bg-blue-600 rounded-full z-10 flex items-center justify-center text-white font-bold">2</div>
+                        <div class="w-1/2"></div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-1/2 p-4 bg-white rounded-lg shadow-md border-r-2 border-blue-200">
+                            <h4 class="font-bold text-slate-800">Sócio Fundador</h4>
+                            <p class="text-sm text-slate-600 mt-1">Foco: Tornar-se Líder de Líderes. Sair da supervisão diária, estruturar e gerir a área comercial.</p>
+                        </div>
+                        <div class="w-1/2 p-4 bg-white rounded-lg shadow-md ml-8 border-l-2 border-slate-300">
+                             <h4 class="font-bold text-slate-800">Sócio de Operações</h4>
+                            <p class="text-sm text-slate-600 mt-1">Foco: Dominar a Gestão de Equipe e Projetos. Assumir responsabilidade total pela equipe e liderar contratações.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fase 3 -->
+                 <div class="relative">
+                    <div class="flex items-center mb-1">
+                        <div class="w-1/2 pr-8 text-right">
+                           <h3 class="text-xl font-bold text-blue-700">Fase 3: Consolidação</h3>
+                           <p class="text-sm text-slate-500">Anos 8-10</p>
+                        </div>
+                        <div class="w-10 h-10 bg-blue-600 rounded-full z-10 flex items-center justify-center text-white font-bold">3</div>
+                        <div class="w-1/2"></div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-1/2 p-4 bg-white rounded-lg shadow-md border-r-2 border-blue-200">
+                            <h4 class="font-bold text-slate-800">Sócio Fundador</h4>
+                            <p class="text-sm text-slate-600 mt-1">Foco: Atuar como Presidente do Conselho. Supervisionar líderes, focar na visão de longo prazo e na saúde financeira.</p>
+                        </div>
+                        <div class="w-1/2 p-4 bg-white rounded-lg shadow-md ml-8 border-l-2 border-slate-300">
+                             <h4 class="font-bold text-slate-800">Sócio de Operações</h4>
+                            <p class="text-sm text-slate-600 mt-1">Foco: Desenvolver Visão de Líder de Departamento. Operar com autonomia, participar do planejamento estratégico e assumir o P&L.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Metas Financeiras -->
+        <section id="metas-financeiras" class="py-12 bg-white rounded-lg shadow-sm">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-slate-900">Metas Financeiras e Prioridades</h2>
+                <p class="mt-2 text-slate-600">Alvos que sustentarão o crescimento nos próximos 3 anos.</p>
+            </div>
+
+            <div class="mb-8 text-center">
+                 <div class="inline-flex rounded-md shadow-sm" role="group">
+                    <button type="button" class="year-btn active py-2 px-4 text-sm font-medium text-white bg-blue-600 rounded-l-lg" data-year="0">Ano 1</button>
+                    <button type="button" class="year-btn py-2 px-4 text-sm font-medium text-slate-900 bg-white hover:bg-slate-100" data-year="1">Ano 2</button>
+                    <button type="button" class="year-btn py-2 px-4 text-sm font-medium text-slate-900 bg-white hover:bg-slate-100 rounded-r-md" data-year="2">Ano 3</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                 <div>
+                    <h3 class="text-xl font-semibold text-center text-slate-800 mb-4">Faturamento e Mix (B2B/B2C)</h3>
+                    <div class="chart-container">
+                        <canvas id="faturamentoChart"></canvas>
+                    </div>
+                 </div>
+                 <div>
+                    <h3 class="text-xl font-semibold text-center text-slate-800 mb-4">Eficiência e Lucratividade</h3>
+                     <div class="chart-container">
+                        <canvas id="lucratividadeChart"></canvas>
+                    </div>
+                 </div>
+            </div>
+
+            <div class="mt-16">
+                 <h3 class="text-2xl font-bold text-center text-slate-900 mb-8">Prioridades de Investimento</h3>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                     <div class="border-t-4 border-blue-500 p-6 rounded-lg bg-slate-50 shadow-sm">
+                         <h4 class="text-lg font-bold">1. Marketing e Aquisição</h4>
+                         <p class="text-sm text-slate-600 mt-2">Acelerar a captação de clientes B2C e fortalecer a marca B2B. Foco nos Anos 1 e 2.</p>
+                     </div>
+                     <div class="border-t-4 border-blue-500 p-6 rounded-lg bg-slate-50 shadow-sm">
+                         <h4 class="text-lg font-bold">2. Tecnologia e Ferramentas</h4>
+                         <p class="text-sm text-slate-600 mt-2">Aumentar a eficiência operacional com CRM (Ano 1) e evolução do App (Ano 3).</p>
+                     </div>
+                     <div class="border-t-4 border-blue-500 p-6 rounded-lg bg-slate-50 shadow-sm">
+                         <h4 class="text-lg font-bold">3. Desenvolvimento de Pessoas</h4>
+                         <p class="text-sm text-slate-600 mt-2">Capacitar a equipe atual e os futuros líderes para sustentar o crescimento de forma contínua.</p>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-white mt-16">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>&copy; 2025 Fiuza Advogados. Planejamento Estratégico Interativo.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Objective Cards Toggle
+            const objectiveCards = document.querySelectorAll('.objective-card button');
+            objectiveCards.forEach(button => {
+                button.addEventListener('click', () => {
+                    const details = button.nextElementSibling;
+                    const arrow = button.querySelector('.arrow-icon');
+                    details.classList.toggle('hidden');
+                    arrow.classList.toggle('rotate-180');
+                });
+            });
+
+            // Financial Charts
+            const financialData = {
+                years: ['Ano 1', 'Ano 2', 'Ano 3'],
+                faturamento: [100, 150, 225], // Valores de exemplo (base 100)
+                mixB2B: [60, 50, 45],
+                mixB2C: [40, 50, 55],
+                lucratividade: [25, 28, 30],
+                rpa: [10, 12, 14.4] // Valores de exemplo (base 10)
+            };
+
+            const faturamentoCtx = document.getElementById('faturamentoChart').getContext('2d');
+            const faturamentoChart = new Chart(faturamentoCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['B2B', 'B2C'],
+                    datasets: [{
+                        label: 'Faturamento',
+                        data: [financialData.mixB2B[0], financialData.mixB2C[0]],
+                        backgroundColor: ['#3b82f6', '#60a5fa'],
+                        borderColor: ['#2563eb', '#3b82f6'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Faturamento Total: R$ ' + financialData.faturamento[0] + 'K (Exemplo)'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` ${context.label}: ${context.raw}% do faturamento`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const lucratividadeCtx = document.getElementById('lucratividadeChart').getContext('2d');
+            const lucratividadeChart = new Chart(lucratividadeCtx, {
+                 type: 'line',
+                data: {
+                    labels: financialData.years,
+                    datasets: [{
+                        label: 'Lucratividade Líquida (%)',
+                        data: financialData.lucratividade,
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Receita por Advogado (RPA em R$ K)',
+                        data: financialData.rpa,
+                        borderColor: '#60a5fa',
+                        backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                     responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' },
+                         tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                       label += context.dataset.label.includes('%') ? `${context.parsed.y}%` : `R$ ${context.parsed.y}K`;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                         y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+
+            const yearButtons = document.querySelectorAll('.year-btn');
+            yearButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    yearButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-blue-600', 'text-white');
+                        btn.classList.add('bg-white', 'text-slate-900');
+                    });
+                    button.classList.add('active', 'bg-blue-600', 'text-white');
+                    button.classList.remove('bg-white', 'text-slate-900');
+
+                    const yearIndex = parseInt(button.dataset.year);
+
+                    // Update Faturamento Chart
+                    faturamentoChart.data.datasets[0].data = [financialData.mixB2B[yearIndex], financialData.mixB2C[yearIndex]];
+                    faturamentoChart.options.plugins.title.text = 'Faturamento Total: R$ ' + financialData.faturamento[yearIndex] + 'K (Exemplo)';
+                    faturamentoChart.update();
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
